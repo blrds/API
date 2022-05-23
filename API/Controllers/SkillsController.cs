@@ -73,12 +73,12 @@ namespace API.Controllers
         [HttpGet("{parametr}/{value}/sort")]
         public ActionResult<IEnumerable<SkillReadDto>> GetSelectedSkills(string parametr, string value="", [FromQuery]string fields="", string type="")
         {
-            var skillItems = _repo.GetAllSkills();
+            IEnumerable<Skill> skillItems = null;
             if (value != "")
             {
                 parametr = parametr.Insert(0, Char.ToUpper(parametr[0]).ToString());
                 parametr = parametr.Remove(1, 1);
-                skillItems = skillItems.Where(x => x.GetType().GetProperty(parametr).GetValue(x).ToString() == value).ToList();
+                skillItems = (IEnumerable<Skill>)_repo.GetType().GetMethod("GetSkillsBy" + parametr).Invoke(_repo, new object[] { value });
             }
             if (skillItems != null)
             {

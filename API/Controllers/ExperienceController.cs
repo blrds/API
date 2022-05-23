@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.JsonPatch;
 
 namespace API.Controllers
 {
-    [Route("api/experience")]
+    [Route("api/experiences")]
     [ApiController]
     public class ExperiencesController : ControllerBase
     {
@@ -25,7 +25,7 @@ namespace API.Controllers
 
 
         /// <summary>
-        /// GET api/experience
+        /// GET api/experiences
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -42,9 +42,9 @@ namespace API.Controllers
         /// GET ../sort
         /// </summary>
         /// <returns></returns>
-        private IEnumerable<Experience> Sort(IEnumerable<Experience> experience,string fields, string type = "")
+        private IEnumerable<Experience> Sort(IEnumerable<Experience> experiences,string fields, string type = "")
         {
-            List<Experience> experienceItems = (List<Experience>)experience;
+            List<Experience> experienceItems = (List<Experience>)experiences;
             if (fields != "")
             {
                 var f = fields.Split(',');
@@ -65,7 +65,7 @@ namespace API.Controllers
             return experienceItems;
         }
         /// <summary>
-        /// GET api/experience
+        /// GET api/experiences
         /// </summary>
         /// <returns></returns>
         [HttpGet("{parametr}/{value}")]
@@ -73,12 +73,12 @@ namespace API.Controllers
         [HttpGet("{parametr}/{value}/sort")]
         public ActionResult<IEnumerable<ExperienceReadDto>> GetSelectedExperiences(string parametr, string value="", [FromQuery]string fields="", string type="")
         {
-            var experienceItems = _repo.GetAllExperiences();
+            IEnumerable<Experience> experienceItems = null;
             if (value != "")
             {
                 parametr = parametr.Insert(0, Char.ToUpper(parametr[0]).ToString());
                 parametr = parametr.Remove(1, 1);
-                experienceItems = experienceItems.Where(x => x.GetType().GetProperty(parametr).GetValue(x).ToString() == value).ToList();
+                experienceItems = (IEnumerable<Experience>)_repo.GetType().GetMethod("GetExperiencesBy" + parametr).Invoke(_repo, new object[] { value });
             }
             if (experienceItems != null)
             {
@@ -89,7 +89,7 @@ namespace API.Controllers
             return Ok(_mapper.Map<IEnumerable<ExperienceReadDto>>(experienceItems));
         }
         /// <summary>
-        /// GET api/experience/{id}
+        /// GET api/experiences/{id}
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -118,7 +118,7 @@ namespace API.Controllers
         }
 
         /// <summary>
-        /// POST api/experience/{id}
+        /// POST api/experiences/{id}
         /// </summary>
         /// <param name="id"></param>
         /// <param name="experienceUpdateDto"></param>
@@ -155,7 +155,7 @@ namespace API.Controllers
         }
 
         /// <summary>
-        /// DELETE api/experience/{id}
+        /// DELETE api/experiences/{id}
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>

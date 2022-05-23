@@ -12,11 +12,13 @@ namespace API.Data.Base
 
         IEnumerable<Specialization> GetAllSpecializations();
         Specialization GetSpecializationById(string id);
+        IEnumerable<Specialization> GetSpecializationsByName(string name);
+        IEnumerable<Specialization> GetSpecializationsById(string id);
 
-        void CreateSpecialization(Specialization skill);
+        void CreateSpecialization(Specialization specialization);
 
-        void UpdateSpecialization(Specialization skill);
+        void UpdateSpecialization(Specialization specialization);
 
-        void DeleteSpecialization(Specialization skill);
+        void DeleteSpecialization(Specialization specialization);
     }
 }

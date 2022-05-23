@@ -12,11 +12,13 @@ namespace API.Data.Base
 
         IEnumerable<Experience> GetAllExperiences();
         Experience GetExperienceById(string id);
+        IEnumerable<Experience> GetExperiencesByName(string name);
+        IEnumerable<Experience> GetExperiencesById(string id);
 
-        void CreateExperience(Experience skill);
+        void CreateExperience(Experience experience);
 
-        void UpdateExperience(Experience skill);
+        void UpdateExperience(Experience experience);
 
-        void DeleteExperience(Experience skill);
+        void DeleteExperience(Experience experience);
     }
 }

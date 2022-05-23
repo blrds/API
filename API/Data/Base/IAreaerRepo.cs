@@ -12,11 +12,13 @@ namespace API.Data.Base
 
         IEnumerable<Area> GetAllAreas();
         Area GetAreaById(int id);
+        IEnumerable<Area> GetAreasByName(string name);
+        IEnumerable<Area> GetAreasById(string id);
 
-        void CreateArea(Area skill);
+        void CreateArea(Area area);
 
-        void UpdateArea(Area skill);
+        void UpdateArea(Area area);
 
-        void DeleteArea(Area skill);
+        void DeleteArea(Area area);
     }
 }

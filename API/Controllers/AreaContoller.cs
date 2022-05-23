@@ -73,12 +73,12 @@ namespace API.Controllers
         [HttpGet("{parametr}/{value}/sort")]
         public ActionResult<IEnumerable<AreaReadDto>> GetSelectedAreas(string parametr, string value="", [FromQuery]string fields="", string type="")
         {
-            var areaItems = _repo.GetAllAreas();
+            IEnumerable<Area> areaItems = null;
             if (value != "")
             {
                 parametr = parametr.Insert(0, Char.ToUpper(parametr[0]).ToString());
                 parametr = parametr.Remove(1, 1);
-                areaItems = areaItems.Where(x => x.GetType().GetProperty(parametr).GetValue(x).ToString() == value).ToList();
+                areaItems = (IEnumerable<Area>)_repo.GetType().GetMethod("GetAreasBy" + parametr).Invoke(_repo, new object[] { value });
             }
             if (areaItems != null)
             {

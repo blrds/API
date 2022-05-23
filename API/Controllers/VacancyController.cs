@@ -52,7 +52,10 @@ namespace API.Controllers
 
                 for (int i = 0; i < f.Length; i++)
                 {
-                    if (f[i].ToLower() != "name" || f[i].ToLower() != "id") continue;
+                    if (f[i].ToLower() != "name" || f[i].ToLower() != "id" || f[i].ToLower()!="idarea" 
+                        || f[i].ToLower() != "salaryfrom" || f[i].ToLower() != "salaryto" || f[i].ToLower() != "salarycurrency"
+                        || f[i].ToLower() != "publishat" || f[i].ToLower() != "snippetrequirement" || f[i].ToLower() != "snippetrequirement"
+                        || f[i].ToLower() != "description" || f[i].ToLower() != "idexperience") continue;
                     f[i] = f[i].Insert(0, Char.ToUpper(f[i][0]).ToString());
                     f[i] = f[i].Remove(1, 1);
                     if (type == "desc")
@@ -73,12 +76,12 @@ namespace API.Controllers
         [HttpGet("{parametr}/{value}/sort")]
         public ActionResult<IEnumerable<VacancyReadDto>> GetSelectedVacancies(string parametr, string value="", [FromQuery]string fields="", string type="")
         {
-            var vacancyItems = _repo.GetAllVacancies();
+            IEnumerable<Vacancy> vacancyItems = null;
             if (value != "")
             {
                 parametr = parametr.Insert(0, Char.ToUpper(parametr[0]).ToString());
                 parametr = parametr.Remove(1, 1);
-                vacancyItems = vacancyItems.Where(x => x.GetType().GetProperty(parametr).GetValue(x).ToString() == value).ToList();
+                vacancyItems = (IEnumerable<Vacancy>)_repo.GetType().GetMethod("GetVacanciesBy" + parametr).Invoke(_repo, new object[] { value });
             }
             if (vacancyItems != null)
             {

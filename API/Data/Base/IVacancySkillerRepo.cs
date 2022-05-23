@@ -11,12 +11,15 @@ namespace API.Data.Base
         bool SaveChanges();
 
         IEnumerable<VacancySkill> GetAllVacancySkills();
-        VacancySkill GetVacancySkillById(int vid, int sid);
+        IEnumerable<VacancySkill> GetVacancySkillsByIdSkill(string sid);
+        IEnumerable<VacancySkill> GetVacancySkillsByIdVacancy(string vid);
 
-        void CreateVacancySkill(VacancySkill skill);
+        IEnumerable<VacancySkill> GetVacancySkillsByIds(string vid, string sid);
 
-        void UpdateVacancySkill(VacancySkill skill);
+        void CreateVacancySkill(VacancySkill vacancySkill);
 
-        void DeleteVacancySkill(VacancySkill skill);
+        void UpdateVacancySkill(VacancySkill vacancySkill);
+
+        void DeleteVacancySkill(VacancySkill vacancySkill);
     }
 }

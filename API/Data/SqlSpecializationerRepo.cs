@@ -45,6 +45,16 @@ namespace API.Data
             return _context.Specializations.FirstOrDefault(p => p.Id == id);
         }
 
+        public IEnumerable<Specialization> GetSpecializationsById(string id)
+        {
+            return _context.Specializations.Where(x => x.Id.ToString() == id).ToList();
+        }
+
+        public IEnumerable<Specialization> GetSpecializationsByName(string name)
+        {
+            return _context.Specializations.Where(x => x.Name == name).ToList();
+        }
+
         public bool SaveChanges()
         {
             return (_context.SaveChanges()>=0);

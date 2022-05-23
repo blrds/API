@@ -45,6 +45,16 @@ namespace API.Data
             return _context.Areas.FirstOrDefault(p => p.Id == id);
         }
 
+        public IEnumerable<Area> GetAreasById(string id)
+        {
+            return _context.Areas.Where(x => x.Id.ToString() == id).ToList();
+        }
+
+        public IEnumerable<Area> GetAreasByName(string name)
+        {
+            return _context.Areas.Where(x => x.Name == name).ToList();
+        }
+
         public bool SaveChanges()
         {
             return (_context.SaveChanges()>=0);

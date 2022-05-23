@@ -17,7 +17,7 @@ namespace API.Models
         public decimal SalaryTo { get; set; }
 
         [MaxLength(10)]
-        public string SalaryCurency { get; set; }
+        public string SalaryCurrency { get; set; }
 
         [Required]
         public DateTime PublishedDate { get; set; }

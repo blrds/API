@@ -20,9 +20,10 @@ namespace API.Dtos
         public decimal SalaryTo { get; set; }
 
         [MaxLength(10)]
-        public string SalaryCurency { get; set; }
+        public string SalaryCurrency { get; set; }
 
         [Required]
+        [DisplayFormat(DataFormatString = "yyyy-MM-dd HH:mm:ss.fff")]
         public DateTime PublishedDate { get; set; }
 
         [MaxLength(100)]

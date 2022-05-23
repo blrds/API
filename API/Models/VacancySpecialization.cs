@@ -12,7 +12,7 @@ namespace API.Models
         public int IdVacancy { get; set; }
 
         [Required]
-        public int IdSpecialization { get; set; }
+        public string IdSpecialization { get; set; }
 
 
     }

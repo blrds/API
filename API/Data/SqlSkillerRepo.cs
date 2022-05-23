@@ -45,6 +45,16 @@ namespace API.Data
             return _context.Skills.FirstOrDefault(p => p.Id == id);
         }
 
+        public IEnumerable<Skill> GetSkillsById(string id)
+        {
+            return _context.Skills.Where(x => x.Id.ToString() == id).ToList();
+        }
+
+        public IEnumerable<Skill> GetSkillsByName(string name)
+        {
+            return _context.Skills.Where(x => x.Name == name).ToList();
+        }
+
         public bool SaveChanges()
         {
             return (_context.SaveChanges()>=0);

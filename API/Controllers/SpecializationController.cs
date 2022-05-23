@@ -73,12 +73,12 @@ namespace API.Controllers
         [HttpGet("{parametr}/{value}/sort")]
         public ActionResult<IEnumerable<SpecializationReadDto>> GetSelectedSpecializations(string parametr, string value="", [FromQuery]string fields="", string type="")
         {
-            var specializationItems = _repo.GetAllSpecializations();
+            IEnumerable<Specialization> specializationItems = null;
             if (value != "")
             {
                 parametr = parametr.Insert(0, Char.ToUpper(parametr[0]).ToString());
                 parametr = parametr.Remove(1, 1);
-                specializationItems = specializationItems.Where(x => x.GetType().GetProperty(parametr).GetValue(x).ToString() == value).ToList();
+                specializationItems = (IEnumerable<Specialization>)_repo.GetType().GetMethod("GetSpecializationsBy" + parametr).Invoke(_repo, new object[] { value });
             }
             if (specializationItems != null)
             {

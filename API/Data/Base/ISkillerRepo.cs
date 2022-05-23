@@ -13,6 +13,8 @@ namespace API.Data.Base
         IEnumerable<Skill> GetAllSkills();
         Skill GetSkillById(int id);
 
+        IEnumerable<Skill> GetSkillsByName(string name);
+        IEnumerable<Skill> GetSkillsById(string id);
         void CreateSkill(Skill skill);
 
         void UpdateSkill(Skill skill);

@@ -45,6 +45,16 @@ namespace API.Data
             return _context.Experiences.FirstOrDefault(p => p.Id == id);
         }
 
+        public IEnumerable<Experience> GetExperiencesById(string id)
+        {
+            return _context.Experiences.Where(x => x.Id == id).ToList();
+        }
+
+        public IEnumerable<Experience> GetExperiencesByName(string name)
+        {
+            return _context.Experiences.Where(x => x.Name == name).ToList();
+        }
+
         public bool SaveChanges()
         {
             return (_context.SaveChanges()>=0);

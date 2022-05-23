@@ -16,23 +16,23 @@ namespace API.Data
             _context = context;
         }
 
-        public void CreateVacancySpecialization(VacancySpecialization vacancyspecialization)
+        public void CreateVacancySpecialization(VacancySpecialization vacancySpecialization)
         {
-            if (vacancyspecialization == null)
+            if (vacancySpecialization == null)
             {
-                throw new ArgumentNullException(nameof(vacancyspecialization));
+                throw new ArgumentNullException(nameof(vacancySpecialization));
             }
 
-            _context.VacancySpecializations.Add(vacancyspecialization);
+            _context.VacancySpecializations.Add(vacancySpecialization);
         }
 
-        public void DeleteVacancySpecialization(VacancySpecialization vacancyspecialization)
+        public void DeleteVacancySpecialization(VacancySpecialization vacancySpecialization)
         {
-            if (vacancyspecialization == null)
+            if (vacancySpecialization == null)
             {
-                throw new ArgumentNullException(nameof(vacancyspecialization));
+                throw new ArgumentNullException(nameof(vacancySpecialization));
             }
-            _context.VacancySpecializations.Remove(vacancyspecialization);
+            _context.VacancySpecializations.Remove(vacancySpecialization);
         }
 
         public IEnumerable<VacancySpecialization> GetAllVacancySpecializations()
@@ -40,9 +40,19 @@ namespace API.Data
             return _context.VacancySpecializations.ToList();
         }
 
-        public VacancySpecialization GetVacancySpecializationById(int vid, int sid)
+        public IEnumerable<VacancySpecialization> GetVacancySpecializationsByIds(string sid, string vid)
         {
-            return _context.VacancySpecializations.FirstOrDefault(p => p.IdVacancy == vid && p.IdSpecialization == sid);
+            return _context.VacancySpecializations.Where(x => x.IdSpecialization == sid && x.IdVacancy.ToString()==vid).ToList();
+        }
+
+        public IEnumerable<VacancySpecialization> GetVacancySpecializationsByIdSpecialization(string sid)
+        {
+            return _context.VacancySpecializations.Where(x => x.IdSpecialization == sid).ToList();
+        }
+
+        public IEnumerable<VacancySpecialization> GetVacancySpecializationsByIdVacancy(string vid)
+        {
+            return _context.VacancySpecializations.Where(x => x.IdVacancy.ToString() == vid).ToList();
         }
 
         public bool SaveChanges()
@@ -50,7 +60,7 @@ namespace API.Data
             return (_context.SaveChanges()>=0);
         }
 
-        public void UpdateVacancySpecialization(VacancySpecialization vacancyspecialization)
+        public void UpdateVacancySpecialization(VacancySpecialization vacancySpecialization)
         {
             //
         }

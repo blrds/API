@@ -16,23 +16,23 @@ namespace API.Data
             _context = context;
         }
 
-        public void CreateVacancySkill(VacancySkill vacancyskill)
+        public void CreateVacancySkill(VacancySkill vacancySkill)
         {
-            if (vacancyskill == null)
+            if (vacancySkill == null)
             {
-                throw new ArgumentNullException(nameof(vacancyskill));
+                throw new ArgumentNullException(nameof(vacancySkill));
             }
 
-            _context.VacancySkills.Add(vacancyskill);
+            _context.VacancySkills.Add(vacancySkill);
         }
 
-        public void DeleteVacancySkill(VacancySkill vacancyskill)
+        public void DeleteVacancySkill(VacancySkill vacancySkill)
         {
-            if (vacancyskill == null)
+            if (vacancySkill == null)
             {
-                throw new ArgumentNullException(nameof(vacancyskill));
+                throw new ArgumentNullException(nameof(vacancySkill));
             }
-            _context.VacancySkills.Remove(vacancyskill);
+            _context.VacancySkills.Remove(vacancySkill);
         }
 
         public IEnumerable<VacancySkill> GetAllVacancySkills()
@@ -40,9 +40,19 @@ namespace API.Data
             return _context.VacancySkills.ToList();
         }
 
-        public VacancySkill GetVacancySkillById(int vid, int  sid)
+        public IEnumerable<VacancySkill> GetVacancySkillsByIdSkill(string sid)
         {
-            return _context.VacancySkills.FirstOrDefault(p => p.IdVacancy == vid && p.IdSkill==sid);
+            return _context.VacancySkills.Where(x => x.IdSkill.ToString() == sid).ToList();
+        }
+
+        public IEnumerable<VacancySkill> GetVacancySkillsByIdVacancy(string vid)
+        {
+            return _context.VacancySkills.Where(x => x.IdVacancy.ToString() == vid).ToList();
+        }
+
+        public IEnumerable<VacancySkill> GetVacancySkillsByIds(string vid, string sid)
+        {
+            return _context.VacancySkills.Where(x => x.IdVacancy.ToString() == vid && x.IdSkill.ToString()==sid).ToList();
         }
 
         public bool SaveChanges()
@@ -50,7 +60,7 @@ namespace API.Data
             return (_context.SaveChanges()>=0);
         }
 
-        public void UpdateVacancySkill(VacancySkill vacancyskill)
+        public void UpdateVacancySkill(VacancySkill vacancySkill)
         {
             //
         }
