@@ -31,10 +31,12 @@ namespace API.Controllers
         [HttpGet]
         [HttpGet("sort")]
         [HttpGet("sort/{type}")]
-        public ActionResult<IEnumerable<VacancyReadDto>> GetAllVacancies([FromQuery] string fields = "", string type = "")
+        [HttpGet("period/{from}/{count}")]
+        public ActionResult<IEnumerable<VacancyReadDto>> GetAllVacancies([FromQuery] string fields = "", string type = "", int from=0, int count=50)
         {
             var vacancyItems = _repo.GetAllVacancies();
             if (fields != "") vacancyItems = Sort(vacancyItems, fields, type);
+            vacancyItems = vacancyItems.Skip(from).Take(count).ToList();
             return Ok(_mapper.Map<IEnumerable<VacancyReadDto>>(vacancyItems));
         }
 
