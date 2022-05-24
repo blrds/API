@@ -80,7 +80,7 @@ namespace API.Controllers
                 parametr = parametr.Remove(1, 1);
                 experienceItems = (IEnumerable<Experience>)_repo.GetType().GetMethod("GetExperiencesBy" + parametr).Invoke(_repo, new object[] { value });
             }
-            if (experienceItems != null)
+            if (experienceItems != null && experienceItems.Count() != 0)
             {
                 if (fields == "") fields = "id";
                 experienceItems = Sort(experienceItems, fields, type);

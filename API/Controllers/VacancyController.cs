@@ -85,7 +85,7 @@ namespace API.Controllers
                 parametr = parametr.Remove(1, 1);
                 vacancyItems = (IEnumerable<Vacancy>)_repo.GetType().GetMethod("GetVacanciesBy" + parametr).Invoke(_repo, new object[] { value });
             }
-            if (vacancyItems != null)
+            if (vacancyItems != null && vacancyItems.Count() != 0)
             {
                 if (fields == "") fields = "id";
                 vacancyItems = Sort(vacancyItems, fields, type);

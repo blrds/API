@@ -15,6 +15,10 @@ namespace API.Models
         [MaxLength(100)]
         public string Name { get; set; }
 
+        public override string ToString()
+        {
+            return "Id+" + Id.ToString() + "\n" + "Name:" + Name;
+        }
 
     }
 }

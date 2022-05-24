@@ -80,7 +80,7 @@ namespace API.Controllers
                 parametr = parametr.Remove(1, 1);
                 skillItems = (IEnumerable<Skill>)_repo.GetType().GetMethod("GetSkillsBy" + parametr).Invoke(_repo, new object[] { value });
             }
-            if (skillItems != null)
+            if (skillItems != null && skillItems.Count()!=0)
             {
                 if (fields == "") fields = "id";
                 skillItems = Sort(skillItems, fields, type);

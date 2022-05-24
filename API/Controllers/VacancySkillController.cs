@@ -80,7 +80,7 @@ namespace API.Controllers
                 parametr = parametr.Remove(1, 1);
                 vskillItems = (IEnumerable<VacancySkill>)_repo.GetType().GetMethod("GetVacancySkillsById" + parametr).Invoke(_repo, new object[] { value });
             }
-            if (vskillItems != null)
+            if (vskillItems != null && vskillItems.Count() != 0)
             {
                 if (fields == "") fields = "id";
                 vskillItems = Sort(vskillItems, fields, type);

@@ -80,7 +80,7 @@ namespace API.Controllers
                 parametr = parametr.Remove(1, 1);
                 specializationItems = (IEnumerable<Specialization>)_repo.GetType().GetMethod("GetSpecializationsBy" + parametr).Invoke(_repo, new object[] { value });
             }
-            if (specializationItems != null)
+            if (specializationItems != null && specializationItems.Count() != 0)
             {
                 if (fields == "") fields = "id";
                 specializationItems = Sort(specializationItems, fields, type);

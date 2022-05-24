@@ -80,7 +80,7 @@ namespace API.Controllers
                 parametr = parametr.Remove(1, 1);
                 areaItems = (IEnumerable<Area>)_repo.GetType().GetMethod("GetAreasBy" + parametr).Invoke(_repo, new object[] { value });
             }
-            if (areaItems != null)
+            if (areaItems != null && areaItems.Count() != 0)
             {
                 if (fields == "") fields = "id";
                 areaItems = Sort(areaItems, fields, type);
