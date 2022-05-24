@@ -52,7 +52,7 @@ namespace API.Controllers
 
                 for (int i = 0; i < f.Length; i++)
                 {
-                    if (f[i].ToLower() != "name" || f[i].ToLower() != "id") continue;
+                    if (f[i].ToLower() != "name" && f[i].ToLower() != "id") continue;
                     f[i] = f[i].Insert(0, Char.ToUpper(f[i][0]).ToString());
                     f[i] = f[i].Remove(1, 1);
                     if (type == "desc")

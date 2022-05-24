@@ -9,7 +9,6 @@ namespace API.Data.Contexts
         {
 
         }
-
         public DbSet<VacancySpecialization> VacancySpecializations { get; set; }
     }
 }

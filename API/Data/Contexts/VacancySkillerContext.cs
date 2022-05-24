@@ -9,7 +9,7 @@ namespace API.Data.Contexts
         {
 
         }
-
+        
         public DbSet<VacancySkill> VacancySkills { get; set; }
     }
 }

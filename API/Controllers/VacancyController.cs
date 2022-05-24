@@ -54,10 +54,10 @@ namespace API.Controllers
 
                 for (int i = 0; i < f.Length; i++)
                 {
-                    if (f[i].ToLower() != "name" || f[i].ToLower() != "id" || f[i].ToLower()!="idarea" 
-                        || f[i].ToLower() != "salaryfrom" || f[i].ToLower() != "salaryto" || f[i].ToLower() != "salarycurrency"
-                        || f[i].ToLower() != "publishat" || f[i].ToLower() != "snippetrequirement" || f[i].ToLower() != "snippetrequirement"
-                        || f[i].ToLower() != "description" || f[i].ToLower() != "idexperience") continue;
+                    if (f[i].ToLower() != "name" && f[i].ToLower() != "id" && f[i].ToLower()!="idarea" 
+                        && f[i].ToLower() != "salaryfrom" && f[i].ToLower() != "salaryto" && f[i].ToLower() != "salarycurrency"
+                        && f[i].ToLower() != "publishat" && f[i].ToLower() != "snippetrequirement" && f[i].ToLower() != "snippetrequirement"
+                        && f[i].ToLower() != "description" && f[i].ToLower() != "idexperience") continue;
                     f[i] = f[i].Insert(0, Char.ToUpper(f[i][0]).ToString());
                     f[i] = f[i].Remove(1, 1);
                     if (type == "desc")

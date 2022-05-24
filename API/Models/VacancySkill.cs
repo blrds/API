@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace API.Models
 {
-    [Keyless]
     public class VacancySkill
     {
-        
+        [Key]
+        public int Id { get; set; }
         [Required]
         public int IdVacancy { get; set; }
 
